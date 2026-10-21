@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Neon Snake - ESP32 Server</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="game-wrapper">
+        <header>
+            <div class="badge">ESP32 Hosted</div>
+            <h1>NEON SNAKE</h1>
+            <div class="score-board">
+                <div class="score-card">
+                    <span class="label">SCORE</span>
+                    <span id="currentScore" class="value">0</span>
+                </div>
+                <div class="score-card">
+                    <span class="label">BEST</span>
+                    <span id="highScore" class="value">0</span>
+                </div>
+            </div>
+
+            <div class="speed-control">
+                <div class="speed-header">
+                    <span class="speed-title">&#9889; SPEED LEVER</span>
+                    <span id="speedValueText" class="speed-tag">NORMAL (5)</span>
+                </div>
+                <input type="range" id="speedSlider" min="1" max="10" value="5" step="1" class="neon-slider">
+            </div>
+        </header>
+
+        <div class="canvas-container">
+            <canvas id="gameCanvas" width="400" height="400"></canvas>
+            
+            <div id="overlay" class="overlay">
+                <h2 id="overlayTitle">CYBER SNAKE</h2>
+                <p id="overlaySubtitle">Press Start or Space to play</p>
+                <button id="startBtn" class="glow-btn">START GAME</button>
+            </div>
+        </div>
+
+        <!-- Mobile Touch Controls -->
+        <div class="touch-controls">
+            <button class="dpad-btn up" id="btnUp">&#9650;</button>
+            <div class="dpad-middle">
+                <button class="dpad-btn left" id="btnLeft">&#9664;</button>
+                <button class="dpad-btn down" id="btnDown">&#9660;</button>
+                <button class="dpad-btn right" id="btnRight">&#9654;</button>
+            </div>
+        </div>
+
+        <footer>
+            <span>Decoupled Cloud Streaming &bull; Hosted on ESP32</span>
+        </footer>
+    </div>
+
+    <script src="game.js"></script>
+</body>
+</html>

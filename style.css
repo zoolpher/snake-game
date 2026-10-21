@@ -1,0 +1,290 @@
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    user-select: none;
+    -webkit-user-select: none;
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+}
+
+body {
+    background: radial-gradient(circle at center, #111827 0%, #030712 100%);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #ffffff;
+    padding: 15px;
+    overflow-x: hidden;
+}
+
+.game-wrapper {
+    background: rgba(17, 24, 39, 0.75);
+    backdrop-filter: blur(14px);
+    border: 1px solid rgba(0, 255, 136, 0.2);
+    border-radius: 20px;
+    padding: 25px 20px;
+    box-shadow: 0 20px 50px rgba(0, 0, 0, 0.6), 0 0 30px rgba(0, 255, 136, 0.1);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 440px;
+    width: 100%;
+}
+
+header {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 15px;
+}
+
+.badge {
+    display: inline-block;
+    background: rgba(0, 255, 136, 0.15);
+    color: #00ff88;
+    border: 1px solid #00ff88;
+    font-size: 0.72rem;
+    font-weight: bold;
+    padding: 4px 12px;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+}
+
+h1 {
+    font-size: 1.9rem;
+    letter-spacing: 3px;
+    font-weight: 800;
+    background: linear-gradient(90deg, #00ff88, #00e5ff);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 12px;
+    text-shadow: 0 0 20px rgba(0, 255, 136, 0.3);
+}
+
+.score-board {
+    display: flex;
+    justify-content: space-around;
+    width: 100%;
+    gap: 15px;
+}
+
+.score-card {
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    padding: 8px 15px;
+    border-radius: 12px;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.score-card .label {
+    font-size: 0.7rem;
+    color: #9ca3af;
+    letter-spacing: 1px;
+    font-weight: 600;
+}
+
+.score-card .value {
+    font-size: 1.4rem;
+    font-weight: 700;
+    color: #00e5ff;
+}
+
+.speed-control {
+    width: 100%;
+    margin-top: 14px;
+    background: rgba(255, 255, 255, 0.04);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    border-radius: 12px;
+    padding: 10px 14px;
+}
+
+.speed-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 8px;
+}
+
+.speed-title {
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: #9ca3af;
+    letter-spacing: 1px;
+}
+
+.speed-tag {
+    font-size: 0.8rem;
+    font-weight: 800;
+    color: #00ff88;
+    background: rgba(0, 255, 136, 0.12);
+    padding: 2px 8px;
+    border-radius: 6px;
+    border: 1px solid rgba(0, 255, 136, 0.25);
+}
+
+.neon-slider {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 100%;
+    height: 7px;
+    border-radius: 10px;
+    background: linear-gradient(90deg, #00e5ff 0%, #00ff88 50%, #ff0077 100%);
+    outline: none;
+    cursor: pointer;
+    box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+    margin: 4px 0;
+}
+
+.neon-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3px solid #00ff88;
+    box-shadow: 0 0 12px #00ff88, 0 0 20px rgba(0, 255, 136, 0.6);
+    cursor: pointer;
+    transition: transform 0.15s ease;
+}
+
+.neon-slider::-webkit-slider-thumb:hover {
+    transform: scale(1.2);
+}
+
+.neon-slider::-moz-range-thumb {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    background: #ffffff;
+    border: 3px solid #00ff88;
+    box-shadow: 0 0 12px #00ff88;
+    cursor: pointer;
+}
+
+.canvas-container {
+    position: relative;
+    width: 400px;
+    height: 400px;
+    max-width: 100%;
+    aspect-ratio: 1/1;
+    border-radius: 14px;
+    overflow: hidden;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+    border: 2px solid rgba(0, 255, 136, 0.3);
+    background: #090d16;
+}
+
+#gameCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(10, 15, 29, 0.88);
+    backdrop-filter: blur(8px);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding: 20px;
+    transition: opacity 0.3s ease;
+}
+
+.overlay.hidden {
+    opacity: 0;
+    pointer-events: none;
+}
+
+.overlay h2 {
+    font-size: 2rem;
+    font-weight: 800;
+    color: #00ff88;
+    margin-bottom: 10px;
+    letter-spacing: 2px;
+}
+
+.overlay p {
+    font-size: 0.95rem;
+    color: #cbd5e1;
+    margin-bottom: 25px;
+}
+
+.glow-btn {
+    background: #00ff88;
+    color: #030712;
+    border: none;
+    padding: 12px 30px;
+    font-size: 1rem;
+    font-weight: 700;
+    border-radius: 50px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    box-shadow: 0 0 20px rgba(0, 255, 136, 0.5);
+    transition: all 0.2s ease;
+}
+
+.glow-btn:hover {
+    transform: scale(1.05);
+    background: #00e5ff;
+    box-shadow: 0 0 30px rgba(0, 229, 255, 0.7);
+}
+
+.glow-btn:active {
+    transform: scale(0.98);
+}
+
+/* On-Screen Mobile Touch D-Pad */
+.touch-controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    width: 100%;
+}
+
+.dpad-middle {
+    display: flex;
+    gap: 15px;
+}
+
+.dpad-btn {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: #00ff88;
+    width: 58px;
+    height: 52px;
+    border-radius: 12px;
+    font-size: 1.3rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    touch-action: manipulation;
+    transition: background 0.15s, transform 0.1s;
+}
+
+.dpad-btn:active {
+    background: rgba(0, 255, 136, 0.3);
+    transform: scale(0.92);
+}
+
+footer {
+    margin-top: 18px;
+    font-size: 0.75rem;
+    color: #6b7280;
+    text-align: center;
+}
